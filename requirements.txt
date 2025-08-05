@@ -1,5 +1,6 @@
 # Core AI and Vector Search
 langchain
+langchain-openai
 langchain-google-genai
 langchain-community
 sentence-transformers
@@ -14,5 +15,4 @@ fastapi
 uvicorn[standard]
 
 # For environment variables
-
 python-dotenv
