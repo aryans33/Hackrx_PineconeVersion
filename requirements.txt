@@ -1,10 +1,10 @@
-# Ignore the Python virtual environment
-venv/
-
-# Ignore Python cache files
-__pycache__/
-*.pyc
-
-# Ignore environment file and git folder
-.env
-.git/
+langchain
+langchain-google-genai
+langchain-community
+sentence-transformers
+pinecone
+pypdf
+requests
+fastapi
+uvicorn[standard]
+python-dotenv
