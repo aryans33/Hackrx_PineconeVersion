@@ -1,23 +1,18 @@
-# Use the full Python image, which is more robust for networking
 FROM python:3.10
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Upgrade pip to the latest version
+# Upgrade pip and install dependencies
 RUN pip install --no-cache-dir --upgrade pip
 
-# Copy the requirements file into the container
+# Copy and install dependencies
 COPY requirements.txt .
-
-# Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application's code into the container
+# Copy app source code
 COPY . .
 
-# Expose the port the app runs on
 EXPOSE 8000
 
-# Use shell form CMD so $PORT is expanded correctly
+# Use shell form CMD to allow $PORT environment variable expansion
 CMD uvicorn app:app --host 0.0.0.0 --port $PORT
