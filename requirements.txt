@@ -1,18 +1,10 @@
-# Core AI and Vector Search
-langchain
-langchain-openai
-langchain-google-genai
-langchain-community
-sentence-transformers
-pinecone
+# Ignore the Python virtual environment
+venv/
 
-# Document Loaders & HTTP requests
-pypdf
-requests
+# Ignore Python cache files
+__pycache__/
+*.pyc
 
-# API Framework
-fastapi
-uvicorn[standard]
-
-# For environment variables
-python-dotenv
+# Ignore environment file and git folder
+.env
+.git/
