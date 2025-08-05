@@ -1,5 +1,3 @@
-
-
 import os
 import tempfile
 import requests
@@ -13,14 +11,14 @@ from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# HuggingFace Inference API Embeddings
+# Updated import for embeddings (keep your current HuggingFaceInferenceAPIEmbeddings if you want, or update as needed)
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 
 from langchain_community.vectorstores import Pinecone
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import RetrievalQA
 
-from pinecone import Pinecone as PineconeClient
+import pinecone  # The official Pinecone client
 
 load_dotenv()
 
@@ -47,7 +45,10 @@ pinecone_env = os.getenv("PINECONE_ENVIRONMENT")
 if not pinecone_api_key or not pinecone_env:
     raise ValueError("PINECONE_API_KEY and PINECONE_ENVIRONMENT must be set in environment variables.")
 
-pc = PineconeClient(api_key=pinecone_api_key)
+# Initialize Pinecone client
+pinecone.init(api_key=pinecone_api_key, environment=pinecone_env)
+
+pc = pinecone  # Just use pinecone namespace as client
 
 # --- Gemini LLM ---
 llm = ChatGoogleGenerativeAI(
@@ -130,8 +131,12 @@ async def run_query(request: QueryRequest):
             os.remove(tmp_file_path)
         if namespace:
             try:
-                index = pc.Index(PINECONE_INDEX_NAME)
-                index.delete(delete_all=True, namespace=namespace)
+                # New Pinecone SDK call to delete all vectors in namespace
+                pc.delete(
+                    index_name=PINECONE_INDEX_NAME,
+                    namespace=namespace,
+                    filter={}  # empty filter deletes all vectors in the namespace
+                )
             except Exception as e:
                 print(f"Error cleaning Pinecone namespace {namespace}: {e}")
 
