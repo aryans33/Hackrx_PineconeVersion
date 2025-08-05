@@ -6,5 +6,5 @@ python-dotenv
 langchain
 langchain-google-genai
 langchain-community
-pinecone-client
 sentence-transformers
+pinecone
