@@ -1,10 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+python-dotenv
 langchain
 langchain-google-genai
 langchain-community
+pinecone-client
 sentence-transformers
-pinecone
-pypdf
-requests
-fastapi
-uvicorn[standard]
-python-dotenv
