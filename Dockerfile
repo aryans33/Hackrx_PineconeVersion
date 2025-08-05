@@ -20,4 +20,5 @@ COPY . .
 EXPOSE 8000
 
 # Define the command to run the application when the container starts
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# CHANGED: Use $PORT so Render detects it
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "$PORT"]
