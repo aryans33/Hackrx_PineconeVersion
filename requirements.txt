@@ -3,7 +3,7 @@ langchain
 langchain-google-genai
 langchain-community
 sentence-transformers
-pinecone-client # Replaces faiss-cpu
+pinecone
 
 # Document Loaders & HTTP requests
 pypdf
@@ -14,4 +14,5 @@ fastapi
 uvicorn[standard]
 
 # For environment variables
+
 python-dotenv
